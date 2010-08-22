@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf.xss-http-filter</groupId>
     <artifactId>xss-http-filter</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
     <packaging>jar</packaging>
     <name>xss-http-servlet</name>
 
@@ -10,9 +10,9 @@
   <description>A Java library for protecting against cross site scripting</description>
 
     <scm>
-        <connection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/trunk</connection>
-        <developerConnection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/trunk</developerConnection>
-        <url>http://xss-http-filter.svn.sourceforge.net/viewvc/xss-http-filter/trunk/</url>
+        <connection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/tags/xss-http-filter-1.1</connection>
+        <developerConnection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/tags/xss-http-filter-1.1</developerConnection>
+        <url>http://xss-http-filter.svn.sourceforge.net/viewvc/xss-http-filter/tags/xss-http-filter-1.1</url>
     </scm>
 
     <licenses>
