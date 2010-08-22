@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>net.sf.xss-http-filter</groupId>
+    <artifactId>xss-http-filter</artifactId>
+    <version>1.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>xss-http-servlet</name>
+
+
+  <description>A Java library for protecting against cross site scripting</description>
+
+    <scm>
+        <connection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/trunk</connection>
+        <developerConnection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/trunk</developerConnection>
+        <url>http://xss-http-filter.svn.sourceforge.net/viewvc/xss-http-filter/trunk/</url>
+    </scm>
+
+    <licenses>
+        <license>
+            <name>LGPLv3</name>
+            <url>LICENSE.txt</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+
+
+  <issueManagement> 
+  	<url>http://xss-http-filter.sf.net</url> 
+  </issueManagement> 
+  <developers> 
+    <developer> 
+       <name>Cal Henderson</name>
+    </developer> 
+    <developer> 
+       <name>Joseph O'Connell</name>
+    </developer> 
+    <developer> 
+       <name>Mck Semb Wever</name>
+       <id>micksembwever</id>
+       <email>mick@wever.org</email>
+       <url>http://semb.wever.org</url>
+    </developer> 
+  </developers> 
+
+    <mailingLists>
+        <mailingList>
+            <name>User &amp; Development List</name>
+            <post>xss-http-filter-user@lists.sourceforge.net</post>
+            <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=xss-http-filter-user</archive>
+        </mailingList>
+        <mailingList>
+            <name>Commit List</name>
+            <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=xss-http-filter-commits</archive>
+        </mailingList>
+    </mailingLists>
+
+    <properties>
+        <!-- java -->
+        <version.jdk>1.6</version.jdk>
+
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${version.jdk}</source>
+                    <target>${version.jdk}</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+               <version>2.1.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                            <goal>test-jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.7</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+
+    <distributionManagement>
+        <site>
+          <id>xss-http-filter.sf.net</id>
+          <url>scp://216.34.181.119/home/groups/x/xs/xss-http-filter/htdocs</url>
+        </site>
+    </distributionManagement>
+
+</project>
