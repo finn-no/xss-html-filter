@@ -104,8 +104,42 @@
         </dependency>
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>xss-http-filter-releases</id>
+            <name>xss-http-filter.sf.net releases</name>
+            <url>http://xss-http-filter.sf.net/releases/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>finntech-snapshot</id>
+            <name>xss-http-filter.sf.net snapshots</name>
+            <url>http://xss-http-filter.sf.net/snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+     </repositories>
 
     <distributionManagement>
+  <repository>
+    <id>xss-http-filter-releases</id>
+    <name>xss-http-filter.sf.net releases</name>
+    <url>scp://shell.sourceforge.net:/home/groups/x/xs/xss-http-filter/htdocs/releases/</url>
+  </repository>
+  <snapshotRepository>
+    <id>xss-http-filter-snapshots</id>
+    <name>xss-http-filter.sf.net snapshots</name>
+    <url>scp://shell.sourceforge.net:/home/groups/x/xs/xss-http-filter/htdocs/snapshots/</url>
+  </snapshotRepository>
         <site>
           <id>xss-http-filter.sf.net</id>
           <url>scp://216.34.181.119/home/groups/x/xs/xss-http-filter/htdocs</url>
