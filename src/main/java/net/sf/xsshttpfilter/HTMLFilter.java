@@ -44,53 +44,53 @@ import java.util.regex.Pattern;
 public final class HTMLFilter {
 
     /** regex flag union representing /si modifiers in php **/
-    protected static final int REGEX_FLAGS_SI = Pattern.CASE_INSENSITIVE | Pattern.DOTALL;
-    protected static final Pattern P_COMMENTS = Pattern.compile("<!--(.*?)-->", Pattern.DOTALL);
-    protected static final Pattern P_COMMENT = Pattern.compile("^!--(.*)--$", REGEX_FLAGS_SI);
-    protected static final Pattern P_TAGS = Pattern.compile("<(.*?)>", Pattern.DOTALL);
-    protected static final Pattern P_END_TAG = Pattern.compile("^/([a-z0-9]+)", REGEX_FLAGS_SI);
-    protected static final Pattern P_START_TAG = Pattern.compile("^([a-z0-9]+)(.*?)(/?)$", REGEX_FLAGS_SI);
-    protected static final Pattern P_QUOTED_ATTRIBUTES = Pattern.compile("([a-z0-9]+)=([\"'])(.*?)\\2", REGEX_FLAGS_SI);
-    protected static final Pattern P_UNQUOTED_ATTRIBUTES = Pattern.compile("([a-z0-9]+)(=)([^\"\\s']+)", REGEX_FLAGS_SI);
-    protected static final Pattern P_PROTOCOL = Pattern.compile("^([^:]+):", REGEX_FLAGS_SI);
-    protected static final Pattern P_ENTITY = Pattern.compile("&#(\\d+);?");
-    protected static final Pattern P_ENTITY_UNICODE = Pattern.compile("&#x([0-9a-f]+);?");
-    protected static final Pattern P_ENCODE = Pattern.compile("%([0-9a-f]{2});?");
-    protected static final Pattern P_VALID_ENTITIES = Pattern.compile("&([^&;]*)(?=(;|&|$))");
-    protected static final Pattern P_VALID_QUOTES = Pattern.compile("(>|^)([^<]+?)(<|$)", Pattern.DOTALL);
-    protected static final Pattern P_END_ARROW = Pattern.compile("^>");
-    protected static final Pattern P_BODY_TO_END = Pattern.compile("<([^>]*?)(?=<|$)");
-    protected static final Pattern P_XML_CONTENT = Pattern.compile("(^|>)([^<]*?)(?=>)");
-    protected static final Pattern P_STRAY_LEFT_ARROW = Pattern.compile("<([^>]*?)(?=<|$)");
-    protected static final Pattern P_STRAY_RIGHT_ARROW = Pattern.compile("(^|>)([^<]*?)(?=>)");
+    private static final int REGEX_FLAGS_SI = Pattern.CASE_INSENSITIVE | Pattern.DOTALL;
+    private static final Pattern P_COMMENTS = Pattern.compile("<!--(.*?)-->", Pattern.DOTALL);
+    private static final Pattern P_COMMENT = Pattern.compile("^!--(.*)--$", REGEX_FLAGS_SI);
+    private static final Pattern P_TAGS = Pattern.compile("<(.*?)>", Pattern.DOTALL);
+    private static final Pattern P_END_TAG = Pattern.compile("^/([a-z0-9]+)", REGEX_FLAGS_SI);
+    private static final Pattern P_START_TAG = Pattern.compile("^([a-z0-9]+)(.*?)(/?)$", REGEX_FLAGS_SI);
+    private static final Pattern P_QUOTED_ATTRIBUTES = Pattern.compile("([a-z0-9]+)=([\"'])(.*?)\\2", REGEX_FLAGS_SI);
+    private static final Pattern P_UNQUOTED_ATTRIBUTES = Pattern.compile("([a-z0-9]+)(=)([^\"\\s']+)", REGEX_FLAGS_SI);
+    private static final Pattern P_PROTOCOL = Pattern.compile("^([^:]+):", REGEX_FLAGS_SI);
+    private static final Pattern P_ENTITY = Pattern.compile("&#(\\d+);?");
+    private static final Pattern P_ENTITY_UNICODE = Pattern.compile("&#x([0-9a-f]+);?");
+    private static final Pattern P_ENCODE = Pattern.compile("%([0-9a-f]{2});?");
+    private static final Pattern P_VALID_ENTITIES = Pattern.compile("&([^&;]*)(?=(;|&|$))");
+    private static final Pattern P_VALID_QUOTES = Pattern.compile("(>|^)([^<]+?)(<|$)", Pattern.DOTALL);
+    private static final Pattern P_END_ARROW = Pattern.compile("^>");
+    private static final Pattern P_BODY_TO_END = Pattern.compile("<([^>]*?)(?=<|$)");
+    private static final Pattern P_XML_CONTENT = Pattern.compile("(^|>)([^<]*?)(?=>)");
+    private static final Pattern P_STRAY_LEFT_ARROW = Pattern.compile("<([^>]*?)(?=<|$)");
+    private static final Pattern P_STRAY_RIGHT_ARROW = Pattern.compile("(^|>)([^<]*?)(?=>)");
     /** set of allowed html elements, along with allowed attributes for each element **/
-    protected final Map<String, List<String>> vAllowed;
+    private final Map<String, List<String>> vAllowed;
     /** counts of open tags for each (allowable) html element **/
-    protected final Map<String, Integer> vTagCounts = new HashMap<String, Integer>();
+    private final Map<String, Integer> vTagCounts = new HashMap<String, Integer>();
 
     /** html elements which must always be self-closing (e.g. "<img />") **/
-    protected final String[] vSelfClosingTags;
+    private final String[] vSelfClosingTags;
     /** html elements which must always have separate opening and closing tags (e.g. "<b></b>") **/
-    protected final String[] vNeedClosingTags;
+    private final String[] vNeedClosingTags;
     /** set of disallowed html elements **/
-    protected final String[] vDisallowed;
+    private final String[] vDisallowed;
     /** attributes which should be checked for valid protocols **/
-    protected final String[] vProtocolAtts;
+    private final String[] vProtocolAtts;
     /** allowed protocols **/
-    protected final String[] vAllowedProtocols;
+    private final String[] vAllowedProtocols;
     /** tags which should be removed if they contain no content (e.g. "<b></b>" or "<b />") **/
-    protected final String[] vRemoveBlanks;
+    private final String[] vRemoveBlanks;
     /** entities allowed within html markup **/
-    protected final String[] vAllowedEntities;
+    private final String[] vAllowedEntities;
     /** flag determining whether comments are allowed in input String. */
-    protected final boolean stripComment;
-    protected boolean vDebug = false;
+    private final boolean stripComment;
+    private boolean vDebug = false;
     /**
      * flag determining whether to try to make tags when presented with "unbalanced"
      * angle brackets (e.g. "<b text </b>" becomes "<b> text </b>").  If set to false,
      * unbalanced angle brackets will be html escaped.
      */
-    protected final boolean alwaysMakeTags;
+    private final boolean alwaysMakeTags;
 
     /** Default constructor.
      *
@@ -166,11 +166,11 @@ public final class HTMLFilter {
         alwaysMakeTags = (Boolean) configuration.get("alwaysMakeTags");
     }
 
-    protected void reset() {
+    private void reset() {
         vTagCounts.clear();
     }
 
-    protected void debug(final String msg) {
+    private void debug(final String msg) {
         if (vDebug) {
             Logger.getAnonymousLogger().info(msg);
         }
@@ -220,7 +220,7 @@ public final class HTMLFilter {
         return s;
     }
 
-    protected String escapeComments(final String s) {
+    private String escapeComments(final String s) {
         final Matcher m = P_COMMENTS.matcher(s);
         final StringBuffer buf = new StringBuffer();
         if (m.find()) {
@@ -232,7 +232,7 @@ public final class HTMLFilter {
         return buf.toString();
     }
 
-    protected String balanceHTML(String s) {
+    private String balanceHTML(String s) {
         if (alwaysMakeTags) {
             //
             // try and form html
@@ -259,7 +259,7 @@ public final class HTMLFilter {
         return s;
     }
 
-    protected String checkTags(String s) {
+    private String checkTags(String s) {
         Matcher m = P_TAGS.matcher(s);
 
         final StringBuffer buf = new StringBuffer();
@@ -283,7 +283,7 @@ public final class HTMLFilter {
         return s;
     }
 
-    protected String processRemoveBlanks(String s) {
+    private String processRemoveBlanks(String s) {
         for (String tag : vRemoveBlanks) {
             s = regexReplace("<" + tag + "(\\s[^>]*)?></" + tag + ">", "", s);
             s = regexReplace("<" + tag + "(\\s[^>]*)?/>", "", s);
@@ -292,16 +292,16 @@ public final class HTMLFilter {
         return s;
     }
 
-    protected String regexReplace(final String regex_pattern, final String replacement, final String s) {
+    private String regexReplace(final String regex_pattern, final String replacement, final String s) {
         return regexReplace(Pattern.compile(regex_pattern), replacement, s);
     }
 
-    protected String regexReplace(final Pattern regex_pattern, final String replacement, final String s) {
+    private String regexReplace(final Pattern regex_pattern, final String replacement, final String s) {
         Matcher m = regex_pattern.matcher(s);
         return m.replaceAll(replacement);
     }
 
-    protected String processTag(final String s) {
+    private String processTag(final String s) {
         // ending tags
         Matcher m = P_END_TAG.matcher(s);
         if (m.find()) {
@@ -389,7 +389,7 @@ public final class HTMLFilter {
         return "";
     }
 
-    protected String processParamProtocol(String s) {
+    private String processParamProtocol(String s) {
         s = decodeEntities(s);
         final Matcher m = P_PROTOCOL.matcher(s);
         if (m.find()) {
@@ -406,7 +406,7 @@ public final class HTMLFilter {
         return s;
     }
 
-    protected String decodeEntities(String s) {
+    private String decodeEntities(String s) {
         StringBuffer buf = new StringBuffer();
 
         Matcher m = P_ENTITY.matcher(s);
@@ -442,7 +442,7 @@ public final class HTMLFilter {
         return s;
     }
 
-    protected String validateEntities(String s) {
+    private String validateEntities(String s) {
         StringBuffer buf = new StringBuffer();
 
         // validate entities throughout the string
@@ -471,14 +471,14 @@ public final class HTMLFilter {
         return s;
     }
 
-    protected String checkEntity(final String preamble, final String term) {
+    private String checkEntity(final String preamble, final String term) {
 
         return ";".equals(term) && isValidEntity(preamble)
                 ? '&' + preamble
                 : "&amp;" + preamble;
     }
 
-    protected boolean isValidEntity(final String entity) {
+    private boolean isValidEntity(final String entity) {
         return inArray(entity, vAllowedEntities);
     }
 
