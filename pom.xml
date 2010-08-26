@@ -7,7 +7,10 @@
     <name>XSS HTTPFilter</name>
 
 
-  <description>A Java library for protecting against cross site scripting</description>
+    <description>
+        A Java library for protecting against cross site scripting. 
+        Hosted at https://sourceforge.net/projects/xss-http-filter/
+    </description>
 
     <scm>
         <connection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/trunk</connection>
@@ -36,9 +39,9 @@
        <url>http://josephoconnell.com/</url>
     </developer> 
     <developer> 
-       <name>Mck Semb Wever</name>
+       <name>mck</name>
        <id>micksembwever</id>
-       <email>mick@wever.org</email>
+       <email>mick@semb.wever.org</email>
        <url>http://semb.wever.org</url>
     </developer> 
   </developers> 
