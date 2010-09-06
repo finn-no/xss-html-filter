@@ -55,7 +55,7 @@ public class HTMLFilterTest {
 
     @Test
     public void testBalancingAngleBrackets() {
-        if (vFilter.alwaysMakeTags) {
+        if (vFilter.isAlwaysMakeTags()) {
             assertThat(vFilter.filter("<img src=\"foo\""), is("<img src=\"foo\" />"));
             assertThat(vFilter.filter("i>"), is(""));
             assertThat(vFilter.filter("<img src=\"foo\"/"), is("<img src=\"foo\" />"));
@@ -88,7 +88,7 @@ public class HTMLFilterTest {
     @Test
     public void testDisallowScriptTags() {
         assertThat(vFilter.filter("<script>"), is(""));
-        String result = vFilter.alwaysMakeTags ? "" : "&lt;script";
+        String result = vFilter.isAlwaysMakeTags() ? "" : "&lt;script";
         assertThat(vFilter.filter("<script"), is(result));
         assertThat(vFilter.filter("<script/>"), is(""));
         assertThat(vFilter.filter("</script>"), is(""));
@@ -127,7 +127,7 @@ public class HTMLFilterTest {
 
     @Test
     public void testComments() {
-        if (vFilter.stripComment) {
+        if (vFilter.isStripComments()) {
             assertThat(vFilter.filter("<!-- a<b --->"), is(""));
         } else {
             assertThat(vFilter.filter("<!-- a<b --->"), is("<!-- a&lt;b --->"));

@@ -220,6 +220,14 @@ public final class HTMLFilter {
         return s;
     }
 
+    public boolean isAlwaysMakeTags(){
+        return alwaysMakeTags;
+    }
+    
+    public boolean isStripComments(){
+        return stripComment;
+    }
+    
     private String escapeComments(final String s) {
         final Matcher m = P_COMMENTS.matcher(s);
         final StringBuffer buf = new StringBuffer();
