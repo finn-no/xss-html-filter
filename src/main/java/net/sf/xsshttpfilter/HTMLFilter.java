@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,6 +65,16 @@ public final class HTMLFilter {
     private static final Pattern P_XML_CONTENT = Pattern.compile("(^|>)([^<]*?)(?=>)");
     private static final Pattern P_STRAY_LEFT_ARROW = Pattern.compile("<([^>]*?)(?=<|$)");
     private static final Pattern P_STRAY_RIGHT_ARROW = Pattern.compile("(^|>)([^<]*?)(?=>)");
+    private static final Pattern P_AMP = Pattern.compile("&");
+    private static final Pattern P_QUOTE = Pattern.compile("\"");
+    private static final Pattern P_LEFT_ARROW = Pattern.compile("<");
+    private static final Pattern P_RIGHT_ARROW = Pattern.compile(">");
+    private static final Pattern P_BOTH_ARROWS = Pattern.compile("<>");
+
+    // @xxx could grow large... maybe use sesat's ReferenceMap
+    private static final ConcurrentMap<String,Pattern> P_REMOVE_PAIR_BLANKS = new ConcurrentHashMap<String, Pattern>();
+    private static final ConcurrentMap<String,Pattern> P_REMOVE_SELF_BLANKS = new ConcurrentHashMap<String, Pattern>();
+
     /** set of allowed html elements, along with allowed attributes for each element **/
     private final Map<String, List<String>> vAllowed;
     /** counts of open tags for each (allowable) html element **/
@@ -183,7 +195,12 @@ public final class HTMLFilter {
     }
 
     public static String htmlSpecialChars(final String s) {
-        return s.replaceAll("&", "&amp;").replaceAll("\"", "&quot;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+        String result = s;
+        result = regexReplace(P_AMP, "&amp;", result);
+        result = regexReplace(P_QUOTE, "&quot;", result);
+        result = regexReplace(P_LEFT_ARROW, "&lt;", result);
+        result = regexReplace(P_RIGHT_ARROW, "&gt;", result);
+        return result;
     }
 
     //---------------------------------------------------------------
@@ -223,11 +240,11 @@ public final class HTMLFilter {
     public boolean isAlwaysMakeTags(){
         return alwaysMakeTags;
     }
-    
+
     public boolean isStripComments(){
         return stripComment;
     }
-    
+
     private String escapeComments(final String s) {
         final Matcher m = P_COMMENTS.matcher(s);
         final StringBuffer buf = new StringBuffer();
@@ -261,7 +278,7 @@ public final class HTMLFilter {
             // (we need to do a lookahead assertion so that the last bracket can
             // be used in the next pass of the regexp)
             //
-            s = s.replaceAll("<>", "");
+            s = regexReplace(P_BOTH_ARROWS, "", s);
         }
 
         return s;
@@ -291,20 +308,23 @@ public final class HTMLFilter {
         return s;
     }
 
-    private String processRemoveBlanks(String s) {
+    private String processRemoveBlanks(final String s) {
+        String result = s;
         for (String tag : vRemoveBlanks) {
-            s = regexReplace("<" + tag + "(\\s[^>]*)?></" + tag + ">", "", s);
-            s = regexReplace("<" + tag + "(\\s[^>]*)?/>", "", s);
+            if(!P_REMOVE_PAIR_BLANKS.containsKey(tag)){
+                P_REMOVE_PAIR_BLANKS.putIfAbsent(tag, Pattern.compile("<" + tag + "(\\s[^>]*)?></" + tag + ">"));
+            }
+            result = regexReplace(P_REMOVE_PAIR_BLANKS.get(tag), "", result);
+            if(!P_REMOVE_SELF_BLANKS.containsKey(tag)){
+                P_REMOVE_SELF_BLANKS.putIfAbsent(tag, Pattern.compile("<" + tag + "(\\s[^>]*)?/>"));
+            }
+            result = regexReplace(P_REMOVE_SELF_BLANKS.get(tag), "", result);
         }
 
-        return s;
+        return result;
     }
 
-    private String regexReplace(final String regex_pattern, final String replacement, final String s) {
-        return regexReplace(Pattern.compile(regex_pattern), replacement, s);
-    }
-
-    private String regexReplace(final Pattern regex_pattern, final String replacement, final String s) {
+    private static String regexReplace(final Pattern regex_pattern, final String replacement, final String s) {
         Matcher m = regex_pattern.matcher(s);
         return m.replaceAll(replacement);
     }
@@ -471,7 +491,7 @@ public final class HTMLFilter {
             final String one = m.group(1); //(>|^)
             final String two = m.group(2); //([^<]+?)
             final String three = m.group(3); //(<|$)
-            m.appendReplacement(buf, Matcher.quoteReplacement(one + two.replaceAll("\"", "&quot;") + three));
+            m.appendReplacement(buf, Matcher.quoteReplacement(one + regexReplace(P_QUOTE, "&quot;", two) + three));
         }
         m.appendTail(buf);
         s = buf.toString();
@@ -490,7 +510,7 @@ public final class HTMLFilter {
         return inArray(entity, vAllowedEntities);
     }
 
-    private boolean inArray(final String s, final String[] array) {
+    private static boolean inArray(final String s, final String[] array) {
         for (String item : array) {
             if (item != null && item.equals(s)) {
                 return true;
