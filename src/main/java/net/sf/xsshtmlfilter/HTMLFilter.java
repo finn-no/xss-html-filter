@@ -1,4 +1,4 @@
-package net.sf.xsshttpfilter;
+package net.sf.xsshtmlfilter;
 
 import java.util.ArrayList;
 import java.util.Collections;

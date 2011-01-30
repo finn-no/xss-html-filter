@@ -1,21 +1,21 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.sf.xss-http-filter</groupId>
-    <artifactId>xss-http-filter</artifactId>
+    <groupId>net.sf.xss-html-filter</groupId>
+    <artifactId>xss-html-filter</artifactId>
     <version>1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>XSS HTTPFilter</name>
+    <name>XSS HTMLFilter</name>
 
 
     <description>
-        A Java library for protecting against cross site scripting. 
-        Hosted at https://sourceforge.net/projects/xss-http-filter/
+        A Java library for protecting against cross site scripting.
+        Hosted at https://sourceforge.net/projects/xss-html-filter/
     </description>
 
     <scm>
-        <connection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/trunk</connection>
-        <developerConnection>scm:svn:https://xss-http-filter.svn.sourceforge.net/svnroot/xss-http-filter/trunk</developerConnection>
-        <url>http://xss-http-filter.svn.sourceforge.net/viewvc/xss-http-filter/trunk/</url>
+        <connection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/trunk</connection>
+        <developerConnection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/trunk</developerConnection>
+        <url>http://xss-html-filter.svn.sourceforge.net/viewvc/xss-html-filter/trunk/</url>
     </scm>
 
     <licenses>
@@ -27,34 +27,34 @@
     </licenses>
 
 
-  <issueManagement><url>http://sourceforge.net/tracker/?group_id=344527</url></issueManagement> 
+  <issueManagement><url>http://sourceforge.net/tracker/?group_id=344527</url></issueManagement>
 
-  <developers> 
-    <developer> 
+  <developers>
+    <developer>
        <name>Cal Henderson</name>
        <url>http://www.iamcal.com/</url>
-    </developer> 
-    <developer> 
+    </developer>
+    <developer>
        <name>Joseph O'Connell</name>
        <url>http://josephoconnell.com/</url>
-    </developer> 
-    <developer> 
+    </developer>
+    <developer>
        <name>mck</name>
        <id>micksembwever</id>
        <email>mick@semb.wever.org</email>
        <url>http://semb.wever.org</url>
-    </developer> 
-  </developers> 
+    </developer>
+  </developers>
 
     <mailingLists>
         <mailingList>
             <name>User &amp; Development List</name>
-            <post>xss-http-filter-user@lists.sourceforge.net</post>
-            <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=xss-http-filter-user</archive>
+            <post>xss-html-filter-user@lists.sourceforge.net</post>
+            <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=xss-html-filter-user</archive>
         </mailingList>
         <mailingList>
             <name>Commit List</name>
-            <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=xss-http-filter-commits</archive>
+            <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=xss-html-filter-commits</archive>
         </mailingList>
     </mailingLists>
 
@@ -92,7 +92,7 @@
     </build>
 
     <dependencies>
-        
+
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>

@@ -1,5 +1,6 @@
-package net.sf.xsshttpfilter;
+package net.sf.xsshtmlfilter;
 
+import net.sf.xsshtmlfilter.HTMLFilter;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
