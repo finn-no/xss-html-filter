@@ -121,7 +121,7 @@
             </snapshots>
         </repository>
         <repository>
-            <id>finntech-snapshot</id>
+            <id>xss-html-filter-snapshot</id>
             <name>xss-html-filter.sf.net snapshots</name>
             <url>http://xss-html-filter.sf.net/snapshots/</url>
             <releases>
