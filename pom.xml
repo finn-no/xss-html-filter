@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf.xss-html-filter</groupId>
     <artifactId>xss-html-filter</artifactId>
-    <version>1.3-SNAPSHOT</version>
+    <version>1.3</version>
     <packaging>jar</packaging>
     <name>XSS HTMLFilter</name>
 
@@ -13,9 +13,9 @@
     </description>
 
     <scm>
-        <connection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/trunk</connection>
-        <developerConnection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/trunk</developerConnection>
-        <url>http://xss-html-filter.svn.sourceforge.net/viewvc/xss-html-filter/trunk/</url>
+        <connection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/tags/xss-html-filter-1.3</connection>
+        <developerConnection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/tags/xss-html-filter-1.3</developerConnection>
+        <url>http://xss-html-filter.svn.sourceforge.net/viewvc/xss-html-filter/tags/xss-html-filter-1.3</url>
     </scm>
 
     <licenses>
@@ -121,7 +121,7 @@
             </snapshots>
         </repository>
         <repository>
-            <id>finntech-snapshot</id>
+            <id>xss-html-filter-snapshot</id>
             <name>xss-html-filter.sf.net snapshots</name>
             <url>http://xss-html-filter.sf.net/snapshots/</url>
             <releases>
@@ -137,16 +137,16 @@
     <repository>
       <id>xss-html-filter-releases</id>
       <name>xss-html-filter.sf.net releases</name>
-      <url>scp://shell.sourceforge.net:/home/groups/x/xs/xss-html-filter/htdocs/releases/</url>
+      <url>scp://shell.sourceforge.net:/home/project-web/xss-html-filter/htdocs/releases/</url>
     </repository>
     <snapshotRepository>
       <id>xss-html-filter-snapshots</id>
       <name>xss-html-filter.sf.net snapshots</name>
-      <url>scp://shell.sourceforge.net:/home/groups/x/xs/xss-html-filter/htdocs/snapshots/</url>
+      <url>scp://shell.sourceforge.net:/home/project-web/xss-html-filter/htdocs/snapshots/</url>
     </snapshotRepository>
     <site>
         <id>xss-html-filter.sf.net</id>
-        <url>scp://216.34.181.119/home/groups/x/xs/xss-html-filter/htdocs/site/</url>
+        <url>scp://web.sourceforge.net/home/project-web/xss-html-filter/htdocs/site/</url>
     </site>
    </distributionManagement>
 
