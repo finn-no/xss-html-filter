@@ -137,16 +137,16 @@
     <repository>
       <id>xss-html-filter-releases</id>
       <name>xss-html-filter.sf.net releases</name>
-      <url>scp://shell.sourceforge.net:/home/groups/x/xs/xss-html-filter/htdocs/releases/</url>
+      <url>scp://shell.sourceforge.net:/home/project-web/xss-html-filter/htdocs/releases/</url>
     </repository>
     <snapshotRepository>
       <id>xss-html-filter-snapshots</id>
       <name>xss-html-filter.sf.net snapshots</name>
-      <url>scp://shell.sourceforge.net:/home/groups/x/xs/xss-html-filter/htdocs/snapshots/</url>
+      <url>scp://shell.sourceforge.net:/home/project-web/xss-html-filter/htdocs/snapshots/</url>
     </snapshotRepository>
     <site>
         <id>xss-html-filter.sf.net</id>
-        <url>scp://216.34.181.119/home/groups/x/xs/xss-html-filter/htdocs/site/</url>
+        <url>scp://web.sourceforge.net/home/project-web/xss-html-filter/htdocs/site/</url>
     </site>
    </distributionManagement>
 
