@@ -442,7 +442,7 @@ public final class HTMLFilter {
         while (m.find()) {
             final String match = m.group(1);
             final int decimal = Integer.decode(match).intValue();
-            m.appendReplacement(buf, chr(decimal));
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
         }
         m.appendTail(buf);
         s = buf.toString();
@@ -452,7 +452,7 @@ public final class HTMLFilter {
         while (m.find()) {
             final String match = m.group(1);
             final int decimal = Integer.valueOf(match, 16).intValue();
-            m.appendReplacement(buf, chr(decimal));
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
         }
         m.appendTail(buf);
         s = buf.toString();
@@ -462,7 +462,7 @@ public final class HTMLFilter {
         while (m.find()) {
             final String match = m.group(1);
             final int decimal = Integer.valueOf(match, 16).intValue();
-            m.appendReplacement(buf, chr(decimal));
+            m.appendReplacement(buf, Matcher.quoteReplacement(chr(decimal)));
         }
         m.appendTail(buf);
         s = buf.toString();
