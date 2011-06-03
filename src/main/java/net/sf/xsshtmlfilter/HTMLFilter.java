@@ -42,6 +42,7 @@ import java.util.regex.Pattern;
  *
  * @author Joseph O'Connell
  * @author Cal Hendersen
+ * @author Michael Semb Wever
  */
 public final class HTMLFilter {
 
@@ -250,7 +251,7 @@ public final class HTMLFilter {
         final StringBuffer buf = new StringBuffer();
         if (m.find()) {
             final String match = m.group(1); //(.*?)
-            m.appendReplacement(buf, "<!--" + htmlSpecialChars(match) + "-->");
+            m.appendReplacement(buf, Matcher.quoteReplacement("<!--" + htmlSpecialChars(match) + "-->"));
         }
         m.appendTail(buf);
 
@@ -291,7 +292,7 @@ public final class HTMLFilter {
         while (m.find()) {
             String replaceStr = m.group(1);
             replaceStr = processTag(replaceStr);
-            m.appendReplacement(buf, replaceStr);
+            m.appendReplacement(buf, Matcher.quoteReplacement(replaceStr));
         }
         m.appendTail(buf);
 
@@ -478,8 +479,7 @@ public final class HTMLFilter {
         while (m.find()) {
             final String one = m.group(1); //([^&;]*)
             final String two = m.group(2); //(?=(;|&|$))
-            final String replacement = Matcher.quoteReplacement(checkEntity(one, two));
-            m.appendReplacement(buf, replacement);
+            m.appendReplacement(buf, Matcher.quoteReplacement(checkEntity(one, two)));
         }
         m.appendTail(buf);
         s = buf.toString();
