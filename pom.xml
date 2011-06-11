@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.sf.xss-html-filter</groupId>
     <artifactId>xss-html-filter</artifactId>
-    <version>1.4-SNAPSHOT</version>
+    <version>1.4</version>
     <packaging>jar</packaging>
     <name>XSS HTMLFilter</name>
 
@@ -13,9 +13,9 @@
     </description>
 
     <scm>
-        <connection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/trunk</connection>
-        <developerConnection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/trunk</developerConnection>
-        <url>http://xss-html-filter.svn.sourceforge.net/viewvc/xss-html-filter/trunk/</url>
+        <connection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/tags/xss-html-filter-1.4</connection>
+        <developerConnection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/tags/xss-html-filter-1.4</developerConnection>
+        <url>http://xss-html-filter.svn.sourceforge.net/viewvc/xss-html-filter/tags/xss-html-filter-1.4</url>
     </scm>
 
     <licenses>
