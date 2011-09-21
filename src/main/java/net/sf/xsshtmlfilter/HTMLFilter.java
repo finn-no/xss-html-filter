@@ -32,7 +32,7 @@ import java.util.regex.Pattern;
  *
  * Sample use:
  * String input = ...
- * String clean = new HTMLInputFilter().filter( input );
+ * String clean = new HTMLFilter().filter( input );
  *
  * The class is not thread safe. Create a new instance if in doubt.
  *
