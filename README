@@ -1,0 +1,38 @@
+Open Sourced HTML filtering utility for Java
+
+    Project information: http://xss-html-filter.sourceforge.net/site/
+
+This utility is a single class, HTMLFilter, which can be used to parse user-submitted input and sanitize it against potential cross site scripting attacks, malicious html, or simply badly formed html. This version, written in Java, is largely a translation of 
+lib_filter ( http://code.iamcal.com/php/lib_filter/ ), the original work of Cal Henderson ( http://www.iamcal.com/ ) written in PHP.
+
+
+Processing HTML Input
+
+Sample usage:
+
+    // retrieve input from user...
+    String input = ...
+    String clean = new HTMLInputFilter().filter( input );
+
+There's also an example using constretto: http://xss-html-filter.sourceforge.net/constretto.html
+
+
+Building with maven
+
+To include xss-html-filter into a maven built project add the following to your pom.xml (in the corresponding sections)
+
+ <dependency>
+   <groupId>net.sf.xss-html-filter</groupId>
+   <artifactId>xss-html-filter</artifactId>
+   <version>1.5</version> <!-- remember to check for newer versions -->
+ </dependency>
+
+ <repository>
+   <id>xss-html-filter releases</id>
+   <name>xss-html-filter Releases Repository</name>
+   <url>http://xss-html-filter.sf.net/releases/</url>
+ </repository>
+
+
+
+
