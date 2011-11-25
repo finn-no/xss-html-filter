@@ -30,7 +30,7 @@
 
   <issueManagement>
     <system>github</system>
-    <url>http://github.com/michaelsembwever/xss-html-filter /issues</url>
+    <url>http://github.com/michaelsembwever/xss-html-filter/issues</url>
   </issueManagement>
 
   <developers>
@@ -81,7 +81,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-               <version>2.1.1</version>
+               <version>2.1.2</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -92,6 +92,11 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.0</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -100,7 +105,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.7</version>
+            <version>4.10</version>
             <scope>test</scope>
         </dependency>
 
@@ -159,7 +164,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.1.2</version>
+                <version>2.4</version>
                 <reportSets>
                     <reportSet>
                         <reports>
