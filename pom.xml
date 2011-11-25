@@ -8,14 +8,15 @@
 
 
     <description>
-        A Java library for protecting against cross site scripting.
-        Hosted at https://sourceforge.net/projects/xss-html-filter/
+        Open Sourced HTML filtering utility for Java.
+        Used to parse user-submitted input and sanitize it against potential cross site scripting attacks, malicious html, or simply badly formed html.
+        Hosted at https://github.com/michaelsembwever/xss-html-filter
     </description>
 
     <scm>
-        <connection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/trunk</connection>
-        <developerConnection>scm:svn:https://xss-html-filter.svn.sourceforge.net/svnroot/xss-html-filter/trunk</developerConnection>
-        <url>http://xss-html-filter.svn.sourceforge.net/viewvc/xss-html-filter/trunk/</url>
+        <connection>scm:git:git://github.com/michaelsembwever/xss-html-filter.git</connection>
+        <developerConnection>scm:git:git://github.com/michaelsembwever/xss-html-filter.git</developerConnection>
+        <url>https://github.com/michaelsembwever/xss-html-filter</url>
     </scm>
 
     <licenses>
@@ -27,7 +28,10 @@
     </licenses>
 
 
-  <issueManagement><url>http://sourceforge.net/tracker/?group_id=344527</url></issueManagement>
+  <issueManagement>
+    <system>github</system>
+    <url>http://github.com/michaelsembwever/xss-html-filter /issues</url>
+  </issueManagement>
 
   <developers>
     <developer>
