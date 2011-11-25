@@ -97,6 +97,7 @@ public final class HTMLFilter {
     private final String[] vAllowedEntities;
     /** flag determining whether comments are allowed in input String. */
     private final boolean stripComment;
+    private final boolean encodeQuotes;
     private boolean vDebug = false;
     /**
      * flag determining whether to try to make tags when presented with "unbalanced"
@@ -137,6 +138,7 @@ public final class HTMLFilter {
         vRemoveBlanks = new String[]{"a", "b", "strong", "i", "em"};
         vAllowedEntities = new String[]{"amp", "gt", "lt", "quot"};
         stripComment = true;
+        encodeQuotes = true;
         alwaysMakeTags = true;
     }
 
@@ -152,31 +154,30 @@ public final class HTMLFilter {
 
     /** Map-parameter configurable constructor.
      *
-     * @param configuration map containing configuration. keys match field names.
+     * @param conf map containing configuration. keys match field names.
      */
-    public HTMLFilter(final Map<String,Object> configuration) {
+    public HTMLFilter(final Map<String,Object> conf) {
 
-        assert configuration.containsKey("vAllowed") : "configuration requires vAllowed";
-        assert configuration.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";
-        assert configuration.containsKey("vNeedClosingTags") : "configuration requires vNeedClosingTags";
-        assert configuration.containsKey("vDisallowed") : "configuration requires vDisallowed";
-        assert configuration.containsKey("vAllowedProtocols") : "configuration requires vAllowedProtocols";
-        assert configuration.containsKey("vProtocolAtts") : "configuration requires vProtocolAtts";
-        assert configuration.containsKey("vRemoveBlanks") : "configuration requires vRemoveBlanks";
-        assert configuration.containsKey("vAllowedEntities") : "configuration requires vAllowedEntities";
-        assert configuration.containsKey("stripComment") : "configuration requires stripComment";
-        assert configuration.containsKey("alwaysMakeTags") : "configuration requires alwaysMakeTags";
+        assert conf.containsKey("vAllowed") : "configuration requires vAllowed";
+        assert conf.containsKey("vSelfClosingTags") : "configuration requires vSelfClosingTags";
+        assert conf.containsKey("vNeedClosingTags") : "configuration requires vNeedClosingTags";
+        assert conf.containsKey("vDisallowed") : "configuration requires vDisallowed";
+        assert conf.containsKey("vAllowedProtocols") : "configuration requires vAllowedProtocols";
+        assert conf.containsKey("vProtocolAtts") : "configuration requires vProtocolAtts";
+        assert conf.containsKey("vRemoveBlanks") : "configuration requires vRemoveBlanks";
+        assert conf.containsKey("vAllowedEntities") : "configuration requires vAllowedEntities";
 
-        vAllowed = Collections.unmodifiableMap((HashMap<String, List<String>>) configuration.get("vAllowed"));
-        vSelfClosingTags = (String[]) configuration.get("vSelfClosingTags");
-        vNeedClosingTags = (String[]) configuration.get("vNeedClosingTags");
-        vDisallowed = (String[]) configuration.get("vDisallowed");
-        vAllowedProtocols = (String[]) configuration.get("vAllowedProtocols");
-        vProtocolAtts = (String[]) configuration.get("vProtocolAtts");
-        vRemoveBlanks = (String[]) configuration.get("vRemoveBlanks");
-        vAllowedEntities = (String[]) configuration.get("vAllowedEntities");
-        stripComment = (Boolean) configuration.get("stripComment");
-        alwaysMakeTags = (Boolean) configuration.get("alwaysMakeTags");
+        vAllowed = Collections.unmodifiableMap((HashMap<String, List<String>>) conf.get("vAllowed"));
+        vSelfClosingTags = (String[]) conf.get("vSelfClosingTags");
+        vNeedClosingTags = (String[]) conf.get("vNeedClosingTags");
+        vDisallowed = (String[]) conf.get("vDisallowed");
+        vAllowedProtocols = (String[]) conf.get("vAllowedProtocols");
+        vProtocolAtts = (String[]) conf.get("vProtocolAtts");
+        vRemoveBlanks = (String[]) conf.get("vRemoveBlanks");
+        vAllowedEntities = (String[]) conf.get("vAllowedEntities");
+        stripComment =  conf.containsKey("stripComment") ? (Boolean) conf.get("stripComment") : true;
+        encodeQuotes = conf.containsKey("encodeQuotes") ? (Boolean) conf.get("encodeQuotes") : true;
+        alwaysMakeTags = conf.containsKey("alwaysMakeTags") ? (Boolean) conf.get("alwaysMakeTags") : true;
     }
 
     private void reset() {
@@ -471,7 +472,7 @@ public final class HTMLFilter {
         return s;
     }
 
-    private String validateEntities(String s) {
+    private String validateEntities(final String s) {
         StringBuffer buf = new StringBuffer();
 
         // validate entities throughout the string
@@ -482,21 +483,25 @@ public final class HTMLFilter {
             m.appendReplacement(buf, Matcher.quoteReplacement(checkEntity(one, two)));
         }
         m.appendTail(buf);
-        s = buf.toString();
 
-        // validate quotes outside of tags
-        buf = new StringBuffer();
-        m = P_VALID_QUOTES.matcher(s);
-        while (m.find()) {
-            final String one = m.group(1); //(>|^)
-            final String two = m.group(2); //([^<]+?)
-            final String three = m.group(3); //(<|$)
-            m.appendReplacement(buf, Matcher.quoteReplacement(one + regexReplace(P_QUOTE, "&quot;", two) + three));
+        return encodeQuotes(buf.toString());
+    }
+
+    private String encodeQuotes(final String s){
+        if(encodeQuotes){
+            StringBuffer buf = new StringBuffer();
+            Matcher m = P_VALID_QUOTES.matcher(s);
+            while (m.find()) {
+                final String one = m.group(1); //(>|^)
+                final String two = m.group(2); //([^<]+?)
+                final String three = m.group(3); //(<|$)
+                m.appendReplacement(buf, Matcher.quoteReplacement(one + regexReplace(P_QUOTE, "&quot;", two) + three));
+            }
+            m.appendTail(buf);
+            return buf.toString();
+        }else{
+            return s;
         }
-        m.appendTail(buf);
-        s = buf.toString();
-
-        return s;
     }
 
     private String checkEntity(final String preamble, final String term) {
