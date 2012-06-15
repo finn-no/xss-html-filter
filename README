@@ -14,7 +14,7 @@ Sample usage:
     String input = ...
     String clean = new HTMLInputFilter().filter( input );
 
-There's also an example using constretto: https://github.com/michaelsembwever/xss-html-filter/wiki/Using-Constretto
+There's also an example using constretto: https://github.com/finn-no/xss-html-filter/wiki/Using-Constretto
 
 
 Building with maven
