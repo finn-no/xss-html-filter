@@ -10,13 +10,13 @@
     <description>
         Open Sourced HTML filtering utility for Java.
         Used to parse user-submitted input and sanitize it against potential cross site scripting attacks, malicious html, or simply badly formed html.
-        Hosted at https://github.com/michaelsembwever/xss-html-filter
+        Hosted at https://github.com/finn-no/xss-html-filter
     </description>
 
     <scm>
-        <connection>scm:git:git://github.com/michaelsembwever/xss-html-filter.git</connection>
-        <developerConnection>scm:git:git://github.com/michaelsembwever/xss-html-filter.git</developerConnection>
-        <url>https://github.com/michaelsembwever/xss-html-filter</url>
+        <connection>scm:git:git://github.com/finn-no/xss-html-filter.git</connection>
+        <developerConnection>scm:git:git://github.com/finn-no/xss-html-filter.git</developerConnection>
+        <url>https://github.com/finn-no/xss-html-filter</url>
     </scm>
 
     <licenses>
@@ -30,7 +30,7 @@
 
   <issueManagement>
     <system>github</system>
-    <url>http://github.com/michaelsembwever/xss-html-filter/issues</url>
+    <url>http://github.com/finn-no/xss-html-filter/issues</url>
   </issueManagement>
 
   <developers>
@@ -50,22 +50,12 @@
     </developer>
   </developers>
 
-    <mailingLists>
-        <mailingList>
-            <name>User &amp; Development List</name>
-            <post>xss-html-filter-user@lists.sourceforge.net</post>
-            <archive>http://sourceforge.net/mailarchive/forum.php?forum_name=xss-html-filter-user</archive>
-        </mailingList>
-        <mailingList>
-            <name>Commit List</name>
-            <archive>https://sourceforge.net/mailarchive/forum.php?forum_name=xss-html-filter-commits</archive>
-        </mailingList>
-    </mailingLists>
-
     <properties>
         <!-- java -->
         <version.jdk>1.6</version.jdk>
 
+        <!-- github -->
+        <github.global.server>github</github.global.server>
     </properties>
 
     <build>
@@ -97,11 +87,25 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.0</version>
             </plugin>
+            <plugin>
+              <groupId>com.github.github</groupId>
+              <artifactId>site-maven-plugin</artifactId>
+              <version>0.6</version>
+              <configuration>
+                  <message>Creating site for ${project.version}</message>
+                  <path>site</path>
+              </configuration>
+              <executions>
+                <execution>
+                  <goals><goal>site</goal></goals>
+                  <phase>site</phase>
+                </execution>
+              </executions>
+            </plugin>
         </plugins>
     </build>
 
     <dependencies>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -153,10 +157,6 @@
       <name>xss-html-filter.sf.net snapshots</name>
       <url>scp://shell.sourceforge.net:/home/project-web/xss-html-filter/htdocs/snapshots/</url>
     </snapshotRepository>
-    <site>
-        <id>xss-html-filter.sf.net</id>
-        <url>scp://web.sourceforge.net/home/project-web/xss-html-filter/htdocs/site/</url>
-    </site>
    </distributionManagement>
 
     <reporting>
