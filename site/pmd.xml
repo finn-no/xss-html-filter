@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.5" timestamp="2012-06-15T15:09:25.803">
+<pmd version="4.2.5" timestamp="2012-06-15T15:19:12.216">
 <file name="/usr/local/src/xss-http-filter.finn-no/src/main/java/net/sf/xsshtmlfilter/HTMLFilter.java">
 <violation beginline="340" endline="345" begincolumn="17" endcolumn="17" rule="CollapsibleIfStatements" ruleset="Basic Rules" package="net.sf.xsshtmlfilter" class="HTMLFilter" method="processTag" externalInfoUrl="http://pmd.sourceforge.net/rules/basic.html#CollapsibleIfStatements" priority="3">
 These nested if statements could be combined
