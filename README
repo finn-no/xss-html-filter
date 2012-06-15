@@ -1,9 +1,8 @@
 Open Sourced HTML filtering utility for Java
 
-    Project information: http://xss-html-filter.sf.net/site/
-    Downloads: http://xss-html-filter.sf.net/releases/net/sf/xss-html-filter/xss-html-filter
+    Front page: http://finn-no.github.com/xss-html-filter
 
-This utility is a single class, HTMLFilter, which can be used to parse user-submitted input and sanitize it against potential cross site scripting attacks, malicious html, or simply badly formed html. This version, written in Java, is largely a translation of 
+This utility is a single class, HTMLFilter, which can be used to parse user-submitted input and sanitize it against potential cross site scripting attacks, malicious html, or simply badly formed html. This version, written in Java, is largely a translation of
 lib_filter ( http://code.iamcal.com/php/lib_filter/ ), the original work of Cal Henderson ( http://www.iamcal.com/ ) written in PHP.
 
 
