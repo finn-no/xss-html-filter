@@ -1,0 +1,31 @@
+-classpath
+'/usr/local/src/xss-http-filter.finn-no/target/classes'
+-encoding
+'UTF-8'
+-protected
+-source
+'1.6'
+-sourcepath
+'/usr/local/src/xss-http-filter.finn-no/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2012. All Rights Reserved.'
+-charset
+'UTF-8'
+-d
+'/usr/local/src/xss-http-filter.finn-no/target/site/apidocs'
+-docencoding
+'UTF-8'
+-docfilessubdirs
+-doctitle
+'XSS HTMLFilter 1.6-SNAPSHOT API'
+-link
+'http://java.sun.com/javase/6/docs/api'
+-link
+'http://java.sun.com/javaee/5/docs/api'
+-linkoffline
+'http://download.oracle.com/javase/6/docs/api' '/usr/local/src/xss-http-filter.finn-no/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'XSS HTMLFilter 1.6-SNAPSHOT API'

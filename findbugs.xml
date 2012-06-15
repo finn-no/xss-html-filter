@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BugCollection version='1.3.9' threshold='' effort='min'><file classname='net.sf.xsshtmlfilter.HTMLFilter'><BugInstance type='SBSC_USE_STRINGBUFFER_CONCATENATION' priority='Normal' category='PERFORMANCE' message='Method net.sf.xsshtmlfilter.HTMLFilter.processTag(String) concatenates strings using + in a loop' lineNumber='386'/></file><Error></Error><Project><SrcDir>/usr/local/src/xss-http-filter.finn-no/src/main/java</SrcDir></Project></BugCollection>
