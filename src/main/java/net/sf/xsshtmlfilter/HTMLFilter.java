@@ -133,7 +133,7 @@ public final class HTMLFilter {
         vSelfClosingTags = new String[]{"img"};
         vNeedClosingTags = new String[]{"a", "b", "strong", "i", "em"};
         vDisallowed = new String[]{};
-        vAllowedProtocols = new String[]{"http", "mailto"}; // no ftp.
+        vAllowedProtocols = new String[]{"http", "mailto", "https"}; // no ftp.
         vProtocolAtts = new String[]{"src", "href"};
         vRemoveBlanks = new String[]{"a", "b", "strong", "i", "em"};
         vAllowedEntities = new String[]{"amp", "gt", "lt", "quot"};

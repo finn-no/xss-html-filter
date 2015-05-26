@@ -107,6 +107,7 @@ public class HTMLFilterTest {
     @Test
     public void testProtocols() {
         assertThat(vFilter.filter("<a href=\"http://foo\">bar</a>"), is("<a href=\"http://foo\">bar</a>"));
+        assertThat(vFilter.filter("<a href=\"https://foo\">bar</a>"), is("<a href=\"https://foo\">bar</a>"));
         // we don't allow ftp. t("<a href=\"ftp://foo\">bar</a>", "<a href=\"ftp://foo\">bar</a>");
         assertThat(vFilter.filter("<a href=\"mailto:foo\">bar</a>"), is("<a href=\"mailto:foo\">bar</a>"));
         assertThat(vFilter.filter("<a href=\"javascript:foo\">bar</a>"), is("<a href=\"#foo\">bar</a>"));
